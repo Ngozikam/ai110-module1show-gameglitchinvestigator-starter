@@ -25,29 +25,53 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
 
+* **Purpose:** The Game Glitch Investigator project demonstrates how to debug, refactor, and test an AI-generated Streamlit number guessing game using GitHub Copilot and pytest.
+
+* **Bugs Found:**
+
+  * The game displayed reversed hint messages ("Go HIGHER!" when the guess was too high and "Go LOWER!" when the guess was too low).
+  * The secret number was converted to a string on even-numbered attempts, causing incorrect comparisons.
+  * The original starter tests no longer matched the updated `check_guess()` function after refactoring because the function returned a tuple instead of a single string.
+
+* **Fixes Applied:**
+
+  * Refactored the `check_guess()` function from `app.py` into `logic_utils.py`.
+  * Corrected the higher/lower hint logic.
+  * Removed the unnecessary string conversion and `TypeError` fallback.
+  * Added regression tests, updated the original starter tests, and verified the repairs using `pytest` and manual testing in Streamlit.
+
+---
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. Launch the application using `python -m streamlit run app.py`.
+2. Open the **Developer Debug Info** panel to view the secret number and monitor the game state.
+3. Enter a guess greater than the secret number. The game correctly displays **"Go LOWER!"** and updates the score.
+4. Enter a guess lower than the secret number. The game correctly displays **"Go HIGHER!"** and records the guess in the game history.
+5. Continue guessing until the correct number is entered. The game displays **"Correct!"**, celebrates the win, updates the final score, and records the completed game session.
 
-**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
+----
+## Screenshot 
 
+![Winning Game](images/winning_game.png)
+
+----
 ## 🧪 Test Results
 
+PS C:\Users\OWNER\Documents\GitHub\ai110-module1show-gameglitchinvestigator-starter> python -m pytest
+rootdir: C:\Users\OWNER\Documents\GitHub\ai110-module1show-gameglitchinvestigator-starter
+plugins: anyio-4.14.0
+collected 6 items                                                                                
+
+tests\test_game_logic.py ......                                                            [100%]
+
+======================================= 6 passed in 0.07s 
+=======================================
+
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
-```
+
 
 ## 🚀 Stretch Features
 
