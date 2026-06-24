@@ -11,6 +11,8 @@ def parse_guess(raw: str):
     """
     raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
 
+# FIX: Refactored check_guess() from app.py into logic_utils.py with GitHub Copilot.
+# Corrected reversed hint logic and verified using Streamlit and pytest.
 
 def check_guess(guess, secret):
     """
@@ -18,7 +20,16 @@ def check_guess(guess, secret):
 
     outcome examples: "Win", "Too High", "Too Low"
     """
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
+    # Preserve function signature; fix hint logic so messages match outcome.
+    if guess == secret:
+        return "Win", "🎉 Correct!"
+
+    if guess > secret:
+        # Guess is higher than secret -> tell player to go LOWER.
+        return "Too High", "📉 Go LOWER!"
+    else:
+        # Guess is lower than secret -> tell player to go HIGHER.
+        return "Too Low", "📈 Go HIGHER!"
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
